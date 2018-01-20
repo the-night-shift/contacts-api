@@ -40,9 +40,12 @@ elsif input_option == "3"
   client_params[:email] = gets.chomp
 
   print "Phone Number: "
-  client_params[:phone_number] = get.chomp
+  client_params[:phone_number] = gets.chomp
 
-  response = Unirest.post("#{url}/contacts")
+  response = Unirest.post(
+                          "#{url}/contacts",
+                          parameters: client_params
+                          )
   contact = response.body
   puts JSON.pretty_generate(contact)
 elsif input_option == "4"
@@ -65,9 +68,14 @@ elsif input_option == "4"
   client_params[:email] = gets.chomp
 
   print "Phone Number (#{contact["phone_number"]}): "
-  client_params[:phone_number] = get.chomp
+  client_params[:phone_number] = gets.chomp
 
-  response = Unirest.patch("#{url}/contacts/#{input_id}")
+  client_params.delete_if {|key, value| value.empty? }
+
+  response = Unirest.patch(
+                          "#{url}/contacts/#{input_id}",
+                          parameters: client_params
+                          )
   contact = response.body
   puts JSON.pretty_generate(contact)
 elsif input_option == "5"
