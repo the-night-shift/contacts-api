@@ -1,7 +1,7 @@
 class ContactsController < ApplicationController
   def index
     contacts = Contact.all
-    render contacts.as_json
+    render json: contacts.as_json
   end
 
   def create
