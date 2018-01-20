@@ -1,7 +1,5 @@
 require 'unirest'
 
-url = "http://localhost:3000"
-
 system "clear"
 
 puts "You have engaged your Contacts Program"
@@ -16,14 +14,14 @@ input_option = gets.chomp
 system "clear"
 
 if input_option == "1"
-  response = Unirest.get("#{url}/contacts")
+  response = Unirest.get("http://localhost:3000/contacts")
   contacts = response.body
   puts JSON.pretty_generate(contacts)
 elsif input_option == "2"
   print "Enter a contact id: "
   input_id = gets.chomp
 
-  response = Unirest.get("#{url}/contacts/#{input_id}")
+  response = Unirest.get("http://localhost:3000/contacts/#{input_id}")
   contact = response.body
   puts JSON.pretty_generate(contact)
 elsif input_option == "3"
@@ -43,7 +41,7 @@ elsif input_option == "3"
   client_params[:phone_number] = gets.chomp
 
   response = Unirest.post(
-                          "#{url}/contacts",
+                          "http://localhost:3000/contacts",
                           parameters: client_params
                           )
   contact = response.body
@@ -52,7 +50,7 @@ elsif input_option == "4"
   print "Enter a contact id: "
   input_id = gets.chomp
 
-  response = Unirest.get("#{url}/contacts/#{input_id}")
+  response = Unirest.get("http://localhost:3000/contacts/#{input_id}")
   contact = response.body
 
   puts "Enter new information for contact ##{input_id}"
@@ -73,7 +71,7 @@ elsif input_option == "4"
   client_params.delete_if {|key, value| value.empty? }
 
   response = Unirest.patch(
-                          "#{url}/contacts/#{input_id}",
+                          "http://localhost:3000/contacts/#{input_id}",
                           parameters: client_params
                           )
   contact = response.body
@@ -82,7 +80,7 @@ elsif input_option == "5"
   print "Enter a contact id that you want to delete: "
   input_id = gets.chomp
 
-  response = Unirest.delete("#{url}/contacts/#{input_id}")
+  response = Unirest.delete("http://localhost:3000/contacts/#{input_id}")
   data = response.body
   puts data["message"]
 end
