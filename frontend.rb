@@ -31,8 +31,14 @@ elsif input_option == "3"
   print "First Name: "
   client_params[:first_name] = gets.chomp
 
+  print "Middle Name: "
+  client_params[:middle_name] = gets.chomp
+
   print "Last Name: "
   client_params[:last_name] = gets.chomp
+
+  print "Bio: "
+  client_params[:bio] = gets.chomp
 
   print "Email: "
   client_params[:email] = gets.chomp
@@ -45,7 +51,7 @@ elsif input_option == "3"
                           parameters: client_params
                           )
   contact = response.body
-  puts JSON.pretty_generate(contact)
+  puts contact
 elsif input_option == "4"
   print "Enter a contact id: "
   input_id = gets.chomp
@@ -59,8 +65,14 @@ elsif input_option == "4"
   print "First Name (#{contact["first_name"]}): "
   client_params[:first_name] = gets.chomp
 
+  print "Middle Name (#{contact["middle_name"]}): "
+  client_params[:middle_name] = gets.chomp
+
   print "Last Name (#{contact["last_name"]}): "
   client_params[:last_name] = gets.chomp
+
+  print "Bio (#{contact["bio"]}): "
+  client_params[:bio] = gets.chomp
 
   print "Email (#{contact["email"]}): "
   client_params[:email] = gets.chomp

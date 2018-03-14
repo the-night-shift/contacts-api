@@ -3,6 +3,8 @@ class Contact < ApplicationRecord
     {
       id: id,
       first_name: first_name,
+      middle_name: middle_name,
+      bio: bio,
       last_name: last_name,
       email: email,
       phone_number: phone_number_with_extension,
@@ -16,7 +18,7 @@ class Contact < ApplicationRecord
   end
 
   def full_name
-    "#{first_name} #{last_name}"
+    "#{first_name} #{middle_name} #{last_name}"
   end
 
   def phone_number_with_extension
