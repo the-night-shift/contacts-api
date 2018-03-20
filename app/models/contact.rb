@@ -14,7 +14,8 @@ class Contact < ApplicationRecord
       email: email,
       phone_number: phone_number_with_extension,
       updated_at: friendly_updated_at,
-      full_name: full_name
+      full_name: full_name,
+      user_id: user_id
     }
   end
 

@@ -1,19 +1,22 @@
 class ContactsController < ApplicationController
   def index
-    search_term = params[:search]
-    contacts = Contact.where("first_name LIKE ?", "%#{search_term}%")
+    # search_term = params[:search]
+    # contacts = Contact.where("first_name LIKE ?", "%#{search_term}%")
+    # find all the contacts that have the user id that is the same as mine
+    contacts = current_user.contacts
     render json: contacts.as_json
   end
 
   def create
     contact = Contact.new(
-                          first_name: params[:first_name],
-                          last_name: params[:last_name],
-                          middle_name: params[:middle_name],
-                          bio: params[:bio],
-                          email: params[:email],
-                          phone_number: params[:phone_number]
-                          )
+      first_name: params[:first_name],
+      last_name: params[:last_name],
+      middle_name: params[:middle_name],
+      bio: params[:bio],
+      email: params[:email],
+      phone_number: params[:phone_number],
+      user_id: current_user.id
+    )
     if contact.save
       render json: contact.as_json
     else

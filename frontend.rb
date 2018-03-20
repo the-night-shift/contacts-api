@@ -1,6 +1,5 @@
 require 'unirest'
 
-
 system "clear"
 
 while true
@@ -145,6 +144,7 @@ while true
     jwt = ""
     Unirest.clear_default_headers()
     p jwt
+    break
   elsif input_option == "q"
     break
   end
