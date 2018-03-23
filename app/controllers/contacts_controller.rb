@@ -3,7 +3,8 @@ class ContactsController < ApplicationController
     # search_term = params[:search]
     # contacts = Contact.where("first_name LIKE ?", "%#{search_term}%")
     # find all the contacts that have the user id that is the same as mine
-    contacts = current_user.contacts
+    contacts = Contact.all
+    # contacts = current_user.contacts
     render json: contacts.as_json
   end
 
